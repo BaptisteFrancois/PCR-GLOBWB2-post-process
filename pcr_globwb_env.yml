@@ -1,0 +1,12 @@
+name: pcr_globwb2_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - numpy=1.26.4
+  - pandas=2.2.1
+  - matplotlib=3.8.4
+  - scipy=1.13.0
+  - netCDF4=1.6.5
+  - fiona=1.9.6

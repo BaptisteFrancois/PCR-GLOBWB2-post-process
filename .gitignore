@@ -1,3 +1,10 @@
+
+# Untracked files and directory
+data/PCR_GLOBWB2/discharge_monthAvg_output_1958-01-31_to_2015-12-31_zip.nc
+data/DPL-caravan_Maharjan_et_al_2024/
+data/hydroshed/
+shapefiles/caravan/**
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

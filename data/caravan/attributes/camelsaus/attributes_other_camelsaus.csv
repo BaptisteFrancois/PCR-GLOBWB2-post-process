@@ -1,0 +1,151 @@
+gauge_id,gauge_name,country,gauge_lat,gauge_lon,area
+camelsaus_102101A,Pascoe River at Fall Creek,Australia,-12.880277778,142.983055556,650.1441070080264
+camelsaus_104001A,Stewart River at Telegraph Road,Australia,-14.168611111,143.393888889,475.0054242803829
+camelsaus_105102A,Laura River at Coalseam Creek,Australia,-15.613333333,144.483611111,1326.028031477959
+camelsaus_105105A,East Normanby River at Development Road,Australia,-15.771111111,145.014166667,297.19526398513426
+camelsaus_107001B,Endeavour River at Flaggy,Australia,-15.423333333,145.067222223,341.54456937628817
+camelsaus_108002A,Daintree River at Bairds,Australia,-16.179444444,145.281944445,912.8133622364292
+camelsaus_108003A,Bloomfield River at China Camp,Australia,-15.988333333,145.2875,263.56253619350645
+camelsaus_116010A,Blencoe Creek at Blencoe Falls,Australia,-18.204444444,145.537777778,227.5848563806313
+camelsaus_116012A,Cameron Creek at 8.7KM,Australia,-18.065277778,145.341944445,352.35103036399045
+camelsaus_116013A,Millstream river at Archer Creek,Australia,-17.651944444,145.341111111,320.44924312400224
+camelsaus_116014A,Wild River at Silver Valley,Australia,-17.625,145.298888889,587.5905295600439
+camelsaus_116015A,Blunder Creek at Wooroora,Australia,-17.735277778,145.438055556,126.41707132315004
+camelsaus_121001A,Don River at Ida Creek,Australia,-20.289444444,148.116111111,605.7580441241665
+camelsaus_136202D,Barambah Creek at Litzows,Australia,-26.301111111,152.044444445,651.29923698994
+camelsaus_136203A,Barker Creek at Brooklands,Australia,-26.733888889,151.820555556,311.29612697730647
+camelsaus_136208A,Boonara Creek at Ettiewyn,Australia,-25.902777778,151.844166667,1395.2398465732444
+camelsaus_137101A,Gregory River at Burrum Highway,Australia,-25.086666667,152.240833334,454.68371739984974
+camelsaus_137201A,Isis River at Bruce Highway,Australia,-25.266944444,152.368611112,445.4563746538736
+camelsaus_138004B,Munna Creek at Marodian,Australia,-25.903611111,152.349166667,1192.2017252148592
+camelsaus_138009A,Tinana Creek at Tagigan Road,Australia,-26.078611111,152.783888889,101.56292217990746
+camelsaus_138010A,Wide Bay Creek at Kilkivan,Australia,-26.079444444,152.22,352.4415480101296
+camelsaus_138113A,Kandanga Creek at Hygait,Australia,-26.39,152.644444445,170.78439299489926
+camelsaus_143110A,Bremer River at Adams Bridge,Australia,-27.8275,152.510833334,125.93253936872178
+camelsaus_143303A,Stanley River at Peachester,Australia,-26.838888889,152.840555556,104.33445475476512
+camelsaus_145010A,Running Creek at 5.8KM Deickmans Bridge,Australia,-28.246388889,152.891111112,132.64714128676698
+camelsaus_145101D,Albert River at Lumeah Number 2,Australia,-28.053055556,153.045277778,167.10334925427256
+camelsaus_204034,Henry River at Newton Boyd,Australia,-29.763055556,152.213333334,400.96560049231255
+camelsaus_206014, Wollomombi River at Coninside,Australia,-30.476388889,152.028333334,370.42432705378224
+camelsaus_206018,Apsley River at Apsley Falls,Australia,-31.049722222,151.766111112,864.0260104063193
+camelsaus_208007,Nowendoc River at Nowendoc,Australia,-31.516388889,151.716388889,222.53797499853508
+camelsaus_208009,Barnard River at Barry,Australia,-31.579166667,151.315277778,151.76635122360668
+camelsaus_210011,William River at Tillegra,Australia,-32.318888889,151.688055556,196.0466715212793
+camelsaus_212260,Kowmung River at Cedar Ford,Australia,-33.947222222,150.244444445,714.8379135318919
+camelsaus_215002,Shoalhaven River at Warri ,Australia,-35.340833334,149.739444445,1395.4085833015872
+camelsaus_215004,Corang River at Hockeys,Australia,-35.146944445,150.033055556,163.71861966208547
+camelsaus_216002,Clyde River at Brooman,Australia,-35.468055556,150.237222223,858.7913687476105
+camelsaus_221207,Errinundra River at Errinundra,Australia,-37.447222222,148.914166667,157.8487482733624
+camelsaus_221210,Genoa River at The Gorge,Australia,-37.416388889,149.518611112,837.6153671223329
+camelsaus_222206,Buchan River at Buchan,Australia,-37.494722222,148.174722223,847.816678145527
+camelsaus_222213,Suggan Buggan River at Suggan Buggan,Australia,-36.954722222,148.326666667,363.176177431581
+camelsaus_223202,Tambo River at Swifts Creek,Australia,-37.268055556,147.728055556,894.6764259048514
+camelsaus_224206,Wonnangatta River at Crooked River,Australia,-37.406388889,147.088055556,1102.7049908691026
+camelsaus_224213A,Dargo River at Lower Dargo Rd,Australia,-37.493888889,147.271388889,666.0483880487545
+camelsaus_224214A,Wentworth River at Tabberabbera,Australia,-37.494444445,147.393333334,440.74922970689727
+camelsaus_225110A,Jordan River at D/S Johnsons Creek,Australia,-37.683611111,146.318611111,132.3125191683032
+camelsaus_225219,Macalister River at Glencairn,Australia,-37.516111111,146.566111111,571.9924684958086
+camelsaus_226220,Loch River at Noojee,Australia,-37.866666667,146.006111111,103.9152785852117
+camelsaus_226407,Morwell River at Boolarra,Australia,-38.4075,146.304722223,114.92172083631176
+camelsaus_227226,Tarwin River East Branch  at Dumbalk North,Australia,-38.499722222,146.160833334,127.05400357596288
+camelsaus_227227,Wilkur Creek at Leongatha,Australia,-38.393333334,145.957222223,105.26102899820756
+camelsaus_231213,Lerderderg River at Sardine Creek O'brien Crossing,Australia,-37.496111111,144.359722223,153.1923803924175
+camelsaus_236213,Mount Emu Creek at Mena Park,Australia,-37.531111111,143.466388889,463.413732566164
+camelsaus_302214,Ansons River at Downstream of Big Boggy Creek,Australia,-41.046666667,148.216666667,228.9029817177229
+camelsaus_304497,Nive River at Gowan Brae,Australia,-42.030555556,146.419722223,177.63827164962805
+camelsaus_304499,Tyenna River at Newbury,Australia,-42.706388889,146.711111111,205.98347427554208
+camelsaus_307473,Davey River at D/S Crossing Rv ,Australia,-43.141388889,145.949722223,697.0908586554266
+camelsaus_308145,Franklin River at Mt Fincham Track,Australia,-42.241666667,145.767222223,773.3489104495146
+camelsaus_308799,Collingwood river at B/L Alma,Australia,-42.164166667,145.928055556,267.9506294723668
+camelsaus_314207,Leven River at at Bannons Bridge,Australia,-41.250833334,146.09,498.97928401098426
+camelsaus_314213,Black River at South Forest,Australia,-40.872222222,145.297777778,318.96308779752474
+camelsaus_315450,Forth River at U/S Lemonthyme,Australia,-41.611666667,146.130555556,309.227491429889
+camelsaus_318076,North Esk River at Ballroom,Australia,-41.494444445,147.384166667,374.0106316269251
+camelsaus_401009,Maragle Creek at Maragle,Australia,-35.926111111,148.100833334,215.49866171263963
+camelsaus_401012,Murray River at Biggara,Australia,-36.318333334,148.051944445,1257.9743598495936
+camelsaus_401015,Bowna Creek at Yambla,Australia,-35.916666667,146.976944445,273.2834421243349
+camelsaus_401203,Mitta Mitta River at Hinnomunjie,Australia,-36.948055556,147.606944445,1521.2985785224273
+camelsaus_401208,Cudgewa Creek at Berringama,Australia,-36.213333334,147.677777778,356.36823779818315
+camelsaus_401210,Snowy Creek at Below Granite Flat,Australia,-36.568611111,147.413611111,413.0335703530202
+camelsaus_401212,Nariel Creek at Upper Nariel,Australia,-36.446111111,147.829444445,254.90367833528072
+camelsaus_401216,Big River at Jokers Creek,Australia,-36.933055556,147.4725,358.38191304088787
+camelsaus_401217,Gibbo River at Gibbo Park,Australia,-36.756111111,147.708611111,389.4391148919398
+camelsaus_402204,Yackandandah Creek at Osbornes Flat,Australia,-36.303333334,146.906111111,280.6070448796078
+camelsaus_402206,Running Creek at Running Creek,Australia,-36.54,147.044444445,127.41926248470214
+camelsaus_402213,Kinchington Creek at Osbornes Flat,Australia,-36.316388889,146.894444445,120.19973798851244
+camelsaus_403213A,Fifteen Mile Creek at Greta South,Australia,-36.619444445,146.244722223,227.17859055394163
+camelsaus_403214,Happy Valley Creek at Rosewhite,Australia,-36.577777778,146.820277778,137.54336925669674
+camelsaus_403217,Rose River at Matong North,Australia,-36.824722222,146.583611111,177.81834595765275
+camelsaus_403221,Reedy Creek at Woolshed,Australia,-36.311666667,146.601111111,211.6833347987645
+camelsaus_403222,Buffalo River at Abbeyard,Australia,-36.910833334,146.700555556,415.18034872072326
+camelsaus_403226,Boggy Creek at Angleside,Australia,-36.605555556,146.362222223,108.04103208712692
+camelsaus_403232,Morses Creek at Wandiligong,Australia,-36.751111111,146.979722223,125.0444063490235
+camelsaus_404207,Holland Creek at Kelfeera,Australia,-36.612222222,146.058611111,455.11547134152033
+camelsaus_405205,Murrindindi River at Murrindindi above Colwells,Australia,-37.413888889,145.564166667,107.7918124454137
+camelsaus_405209,Acheron River at Taggerty,Australia,-37.317777778,145.713888889,625.7361693079191
+camelsaus_405215,Howqua River at Glen Esk,Australia,-37.229444445,146.207222223,369.6164825974048
+camelsaus_405217,Yea River at Devlins Bridge,Australia,-37.383055556,145.473333334,360.38152930173993
+camelsaus_405218,Jamieson River at Gerrang Bridge,Australia,-37.291666667,146.1875,366.8157174169726
+camelsaus_405219,Goulburn River at Dohertys,Australia,-37.3325,146.130277778,699.3193638213895
+camelsaus_405226,Pranjip Creek at Moorlim,Australia,-36.621111111,145.306666667,788.3309886865013
+camelsaus_405227,Big River at Jamieson,Australia,-37.3675,146.056944445,628.327309677407
+camelsaus_405238,Mollison Creek at Pyalong,Australia,-37.120277778,144.856944445,164.74906726686055
+camelsaus_405245,Ford Creek at Mansfield,Australia,-37.038611111,146.053888889,117.46532730491674
+camelsaus_405248,Major Creek at Graytown,Australia,-36.853611111,144.914444445,291.993159001795
+camelsaus_405251,Brankeet Creek at Ancona,Australia,-36.968611111,145.783888889,118.55127166931548
+camelsaus_405263,Goulburn River at U/S of Snake Creek Junction,Australia,-37.462777778,146.247777778,327.4754691218569
+camelsaus_405264,Big River at D/S of Frenchman Creek Junction,Australia,-37.520555556,146.076666667,336.9312328720412
+camelsaus_405274,Home Creek at Yarck,Australia,-37.106111111,145.605,181.5335498400211
+camelsaus_406213,Campaspe River at Redesdale,Australia,-37.016111111,144.539166667,637.5761409107768
+camelsaus_406214,Axe Creek at Longlea,Australia,-36.773888889,144.428333334,236.04267038150456
+camelsaus_406224,Mount Pleasant Creek at Runnymede,Australia,-36.546388889,144.637222223,242.2225465681125
+camelsaus_407214,Creswick Creek at Clunes,Australia,-37.296944445,143.789444445,305.43561018798545
+camelsaus_407215,Loddon River at Newstead,Australia,-37.108888889,144.058888889,1026.2558402604493
+camelsaus_407220,Bet Bet Creek at Norwood,Australia,-36.993611111,143.644166667,350.7569078920733
+camelsaus_407230,Joyces Creek at Strathlea,Australia,-37.162222222,143.960833334,150.46452812757914
+camelsaus_407253,Piccaninny Creek at Minto,Australia,-36.452222222,144.468888889,678.9833165044475
+camelsaus_410057,Goobarragandra River at Lacmalac,Australia,-35.33,148.348888889,664.8818967183228
+camelsaus_410061,Adelong Creek at Batlow Road,Australia,-35.332222222,148.069166667,146.86919707686545
+camelsaus_410705,Molonglo River at Burbong,Australia,-35.335555556,149.316111112,497.855278109136
+camelsaus_410730,Cotter River at Gingera,Australia,-35.591944445,148.822222223,129.363117895351
+camelsaus_410731,Gudgenby River at Tennent,Australia,-35.575,149.066111112,669.7670100626209
+camelsaus_410734,Queanbeyan River at Tinderry,Australia,-35.613888889,149.348888889,564.1721811117553
+camelsaus_412050,Crookwell River at Narrawa North,Australia,-34.310555556,149.167222223,758.7575463136769
+camelsaus_412066,Abercrombie River at Hadley No. 2,Australia,-34.112777778,149.5975,1635.9326926091835
+camelsaus_415207,Wimmera River at Eversley,Australia,-37.185277778,143.184722223,305.13834221792484
+camelsaus_415226,Richardson River at Carrs Plains,Australia,-36.743611111,142.785277778,129.9103358114319
+camelsaus_415237,Concongella Creek at Stawell,Australia,-37.026388889,142.821388889,239.4132013608442
+camelsaus_416003,Tenterfield Creek at Clifton,Australia,-29.029166667,151.725833334,556.1546166720802
+camelsaus_416008,Beadt River at Haystack,Australia,-29.219166667,151.383055556,899.5481902595234
+camelsaus_418005,Copes Creek at Kimberley,Australia,-29.916944445,151.114166667,237.60998956054783
+camelsaus_418014,Gwydir River at Yarrowyck,Australia,-30.4675,151.362777778,827.077121538132
+camelsaus_422313B,Emu Creek at Emu Vale,Australia,-28.228333333,152.226666667,154.04797550343548
+camelsaus_422319B,Dalrymple Creek at Allora,Australia,-28.035833333,152.014444445,245.86683756928872
+camelsaus_422334A,Kings Creek at Aides Bridge,Australia,-27.926388889,151.8625,514.8648080583584
+camelsaus_422394A,Condamine River at Elbow Valley,Australia,-28.371111111,152.141944445,328.5614495476521
+camelsaus_604053,Kent River at Styx Junction,Australia,-34.889166667,117.087222222,1843.159850082636
+camelsaus_606001,Deep River at Teds Pool,Australia,-34.764166667,116.615277778,473.8497446855342
+camelsaus_606185,Shannon River at Dog Pool,Australia,-34.764166667,116.376111111,379.69289537273846
+camelsaus_607155,Dombakup Brook at Malimup Track,Australia,-34.578611111,115.972222222,124.95963593706338
+camelsaus_613002,Harvey River at Dingo Road,Australia,-33.085833333,116.038888889,147.23871398705649
+camelsaus_616002,Darkin River at Pine Plantation,Australia,-32.068333333,116.2925,670.4185195553837
+camelsaus_616013,Helena River  at Ngangaguringuring,Australia,-31.939722222,116.403611111,328.5120431042365
+camelsaus_616065,Canning River at Glen Eagle,Australia,-32.2275,116.171944444,521.9317346824132
+camelsaus_804001,Isdell River at Dales Yard,Australia,-17.008888889,125.4275,1839.289089336994
+camelsaus_809310,Ord River at Bedford Downs,Australia,-17.425833333,127.600555556,549.9611823953757
+camelsaus_915011A,Porcupine Creek at Mt Emu Plains,Australia,-20.1775,144.524444445,566.355802122833
+camelsaus_917107A,Elizabeth Creek at Mount Surprise,Australia,-18.133611111,144.306666667,459.6119368063463
+camelsaus_919201A,Palmer River at Goldfields,Australia,-16.108055555,144.778611111,533.1985157707045
+camelsaus_922101B,Coen river at Racecourse,Australia,-13.956388889,143.175,171.66979178533086
+camelsaus_926002A,Dulhunty River at Dougs Pad,Australia,-11.831666666,142.42,331.8385427927919
+camelsaus_A2390519,Mosquito Creek at Struan,Australia,-37.094722222,140.775833334,1549.62582617103
+camelsaus_A2390523,Stony Creek at Woakwine Range,Australia,-37.701111111,140.37,485.52475371013537
+camelsaus_A2390531,Morambro Creek at Bordertown-Naracoorte Road Bridge,Australia,-36.689166667,140.661111111,405.0160845933912
+camelsaus_A5050517,North Para River at Penrice,Australia,-34.463333334,139.058333334,116.2689343236074
+camelsaus_A5130501,Rocky River upstream Gorge Falls,Australia,-35.955,136.697777778,190.49308317238064
+camelsaus_G0060005,Trephina Creek at Trephina Gorge,Australia,-23.533611111,134.380555556,437.5484926999444
+camelsaus_G8140161,Green Ant Creek at Tipperary,Australia,-13.737777778,131.102777778,412.6966100707591
+camelsaus_G8170002,Adelaide River at Railway Bridge,Australia,-13.240555555,131.108333333,645.7158306730851
+camelsaus_G8190001,West Alligator River at Upstream Arnhem Highway,Australia,-12.791666666,132.174444445,254.9673027329513
+camelsaus_G8200045,South Alligator River at El Sherana ,Australia,-13.524444444,132.519722222,1222.625715950635
+camelsaus_G9030124,Daly Waters Creek at Daly Waters,Australia,-16.259722222,133.373611111,197.26742068670265
