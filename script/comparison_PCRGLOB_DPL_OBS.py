@@ -383,7 +383,8 @@ plt.figlegend(custom_lines, ['DPL-HBV', 'PCR-GLOBWB 2.0'],
     loc = 'lower center', ncol=2, bbox_to_anchor=(0.5,-0.004), fontsize=12)
 plt.subplots_adjust(bottom=0.1)
 fig.savefig('../figures/CDF_RMSE_month_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
 
 fig, axes = plt.subplots(4,3, figsize=(12,8))
 for i, ax in enumerate(axes.flatten()):
@@ -399,7 +400,8 @@ plt.figlegend(custom_lines, ['DPL-HBV', 'PCR-GLOBWB 2.0'],
     loc = 'lower center', ncol=2, bbox_to_anchor=(0.5,-0.004), fontsize=12)
 plt.subplots_adjust(bottom=0.1)
 fig.savefig('../figures/CDF_RMSE_month_PCR_DPL_OBS_zoom.png')
-plt.show()
+#plt.show()
+plt.close()
 
 
 fig, axes = plt.subplots(4,3, figsize=(12,8))
@@ -416,7 +418,8 @@ plt.figlegend(custom_lines, ['DPL-HBV', 'PCR-GLOBWB 2.0'],
     loc = 'lower center', ncol=2, bbox_to_anchor=(0.5,-0.004), fontsize=12)
 plt.subplots_adjust(bottom=0.1)
 fig.savefig('../figures/CDF_Corr_month_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
 
 
 
@@ -432,4 +435,29 @@ for i, ax in enumerate(axes.flatten()):
 plt.suptitle('RMSE (mm.day-1)', fontsize=12)
 plt.tight_layout()
 fig.savefig('../figures/Scatterplot_RMSE_month_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
+
+
+# Time series plot
+id_plotted = ['camels_11522500']
+for id_plotted in gage_id:
+    iid = id_plotted.find('_')
+    obs = pd.read_csv('G:/Caravan/Caravan/timeseries/csv/{}/{}.csv'.format(id_plotted[:iid], id_plotted), 
+                        index_col='date', parse_dates=True, usecols=['date', 'streamflow'])
+    obs = obs.truncate(before='2008-10-01', after='2014-09-30')
+    obs_monthAvg = obs.resample('ME').mean()
+
+    fig, ax = plt.subplots(1,1, figsize=(12,6))
+    ax.plot(obs_monthAvg.index, obs_monthAvg['streamflow'], 'k', label='Observed')
+    ax.plot(PCR.index, PCR[id_plotted], 'b', label='PCR-GLOBWB 2.0')
+    ax.plot(DPL_monthAvg.index, DPL_monthAvg[id_plotted], 'r', label='DPL-HBV (Global Training)')
+
+    ax.grid()
+    ax.set_ylabel('Streamflow (mm.day-1)', fontsize=12)
+    ax.set_title(id_plotted, fontsize=12)
+    ax.legend()
+    plt.tight_layout()
+    fig.savefig('../figures/timeseries/TimeSeries_{}.png'.format(id_plotted))
+    #plt.show()
+    plt.close()
