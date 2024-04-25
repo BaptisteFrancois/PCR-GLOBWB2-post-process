@@ -5,7 +5,7 @@ import pickle
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from matplotlib.lines import Line2D
 
 # Read PCR GLOBWB 2.0 simulations
 PCR = pd.read_csv(
@@ -29,18 +29,26 @@ DPL_flow = pd.read_pickle('../data/DPL-caravan_Maharjan_et_al_2024/G1_dPL_val_TS
 def nash(predictions, targets):
     return 1-(np.sum((targets-predictions)**2)/np.sum((targets-np.mean(targets))**2))
 
-gage_id = []   
+gage_id = []
+num_gages = 0
 area = []
 
 bias_PCR_OBS = []
+biasV_PCR_OBS = []
 nse_PCR_OBS = []
 rmse_PCR_OBS = []
 corr_PCR_OBS = []
 
 bias_DPL_OBS = []
+biasV_DPL_OBS = []
 nse_DPL_OBS = []
 rmse_DPL_OBS = []
 corr_DPL_OBS = []
+
+rmse_by_month_PCR_OBS = np.zeros((12,283))
+corr_by_month_PCR_OBS = np.zeros_like(rmse_by_month_PCR_OBS)
+rmse_by_month_DPL_OBS = np.zeros_like(rmse_by_month_PCR_OBS)
+corr_by_month_DPL_OBS = np.zeros_like(rmse_by_month_PCR_OBS)
 
 DPL = pd.DataFrame()
 
@@ -164,6 +172,10 @@ for gage in PCR.columns:
     bias_PCR_OBS.append(
         (np.mean(PCR[gage] - obs_monthAvg['streamflow'])) / 
         np.mean(obs_monthAvg['streamflow']) * 100)
+    
+    biasV_PCR_OBS.append(
+        (np.std(PCR[gage])**2 - np.std(obs_monthAvg['streamflow'])**2) /
+        np.std(obs_monthAvg['streamflow'])**2 * 100)
 
     nse_PCR_OBS.append(nash(PCR[gage], obs_monthAvg['streamflow']))
 
@@ -180,6 +192,10 @@ for gage in PCR.columns:
         (np.mean(DPL_monthAvg[gage] - obs_monthAvg['streamflow'])) / 
         np.mean(obs_monthAvg['streamflow']) * 100)
     
+    biasV_DPL_OBS.append(
+        (np.std(DPL[gage])**2 - np.std(obs_monthAvg['streamflow'])**2) /
+        np.std(obs_monthAvg['streamflow'])**2 * 100)
+
     nse_DPL_OBS.append(nash(DPL_monthAvg[gage], obs_monthAvg['streamflow']))
 
     rmse_DPL_OBS.append(
@@ -188,9 +204,27 @@ for gage in PCR.columns:
     # Correlation between annual mean
     corr_DPL_OBS.append(np.corrcoef(DPL_annual[gage], obs_annual['streamflow'])[0,1])
 
+    for im, month in enumerate(range(1,13)):
 
-
+        PCR_by_month = PCR[PCR.index.month == month]
+        DPL_by_month = DPL_monthAvg[DPL_monthAvg.index.month == month]
+        obs_by_month = obs_monthAvg[obs_monthAvg.index.month == month]
+        
+        # PCR Performance
+        rmse_by_month_PCR_OBS[im,num_gages] = (
+            np.sqrt(np.mean((PCR_by_month[gage] - obs_by_month['streamflow'])**2)))
+        
+        corr_by_month_PCR_OBS[im,num_gages] = \
+            np.corrcoef(PCR_by_month[gage], obs_by_month['streamflow'])[0,1]
+        
+        rmse_by_month_DPL_OBS[im,num_gages] = (
+            np.sqrt(np.mean((DPL_by_month[gage] - obs_by_month['streamflow'])**2)))
+        
+        corr_by_month_DPL_OBS[im,num_gages] = \
+            np.corrcoef(DPL_by_month[gage], obs_by_month['streamflow'])[0,1]
     
+    num_gages += 1
+    print(num_gages)
 
 fig, ax = plt.subplots(1,1, figsize=(4,4))
 ax.plot(np.sort(nse_PCR_OBS), 'b')
@@ -202,7 +236,8 @@ ax.set_ylabel('NSE', fontsize=12)
 ax.legend(['PCR-GLOBWB 2.0', 'DPL-HBV (Global Training)'])
 plt.tight_layout()
 fig.savefig('../figures/CDF_Nash_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
 
 
 fig, ax = plt.subplots(1,1, figsize=(4,4))
@@ -215,19 +250,47 @@ ax.set_ylabel('Correlation', fontsize=12)
 ax.legend(['PCR-GLOBWB 2.0', 'DPL-HBV (Global Training)'])
 plt.tight_layout()
 fig.savefig('../figures/CDF_CorrAnnual_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
 
 fig, ax = plt.subplots(1,1, figsize=(4,4))
 ax.plot(np.sort(bias_PCR_OBS), 'b')
 ax.plot(np.sort(bias_DPL_OBS), 'r')
-#ax.set_ylim(-0.5,1)
+#ax.set_yscale('log')
 ax.grid()
 ax.set_xlabel('Gages', fontsize=12)
 ax.set_ylabel('Bias (%)', fontsize=12)
 ax.legend(['PCR-GLOBWB 2.0', 'DPL-HBV (Global Training)'])
 plt.tight_layout()
 fig.savefig('../figures/CDF_Bias_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
+
+fig, ax = plt.subplots(1,1, figsize=(4,4))
+ax.plot(np.sort(biasV_PCR_OBS), 'b')
+ax.plot(np.sort(biasV_DPL_OBS), 'r')
+#ax.set_yscale('log')
+ax.grid()
+ax.set_xlabel('Gages', fontsize=12)
+ax.set_ylabel('Bias Variance (%)', fontsize=12)
+ax.legend(['PCR-GLOBWB 2.0', 'DPL-HBV (Global Training)'])
+plt.tight_layout()
+fig.savefig('../figures/CDF_BiasV_PCR_DPL_OBS.png')
+#plt.show()
+plt.close()
+
+fig, ax = plt.subplots(1,1, figsize=(4,4))
+ax.plot(np.sort(rmse_PCR_OBS), 'b')
+ax.plot(np.sort(rmse_DPL_OBS), 'r')
+ax.set_yscale('log')
+ax.grid()
+ax.set_xlabel('Gages', fontsize=12)
+ax.set_ylabel('RMSE (mm.day-1)', fontsize=12)
+ax.legend(['PCR-GLOBWB 2.0', 'DPL-HBV (Global Training)'])
+plt.tight_layout()
+fig.savefig('../figures/CDF_RMSE_PCR_DPL_OBS.png')
+#plt.show()
+plt.close()
 
 fig, ax = plt.subplots(1,1, figsize=(4,4))
 ax.plot(nse_PCR_OBS, nse_DPL_OBS, 'xk')
@@ -240,7 +303,8 @@ ax.set_ylabel('DPL-HBV (Global Training)', fontsize=12)
 ax.set_title('Nash Sutcliffe Efficiency', fontsize=12)
 plt.tight_layout()
 fig.savefig('../figures/Scatterplot_Nash_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
 
 fig, ax = plt.subplots(1,1, figsize=(4,4))
 ax.plot(corr_PCR_OBS, corr_DPL_OBS, 'xk')
@@ -253,10 +317,23 @@ ax.set_ylabel('DPL-HBV (Global Training)', fontsize=12)
 ax.set_title('Correlation annual flow', fontsize=12)
 plt.tight_layout()
 fig.savefig('../figures/Scatterplot_CorrAnnual_PCR_DPL_OBS.png')
-plt.show()
+#plt.show()
+plt.close()
 
 fig, ax = plt.subplots(1,1, figsize=(4,4))
 ax.plot(bias_PCR_OBS, bias_DPL_OBS, 'xk')
+ax.axline((1, 1), slope=1, color="r", linestyle='--')
+ax.grid()
+ax.set_xlabel('PCR-GLOBWB 2.0', fontsize=12)
+ax.set_ylabel('DPL-HBV (Global Training)', fontsize=12)
+ax.set_title('Bias (%)', fontsize=12)
+plt.tight_layout()
+fig.savefig('../figures/Scatterplot_Bias_PCR_DPL_OBS.png')
+#plt.show()
+plt.close()
+
+fig, ax = plt.subplots(1,1, figsize=(4,4))
+ax.plot(biasV_PCR_OBS, biasV_DPL_OBS, 'xk')
 #ax.plot([-1,1], [-1,1], '--r')
 #ax.set_xlim(-1,1)
 #ax.set_ylim(-1,1)
@@ -264,10 +341,95 @@ ax.grid()
 ax.set_xlabel('PCR-GLOBWB 2.0', fontsize=12)
 ax.set_ylabel('DPL-HBV (Global Training)', fontsize=12)
 ax.set_title('Bias (%)', fontsize=12)
+#ax.set_xscale('log')
+#ax.set_yscale('log')
 plt.tight_layout()
-fig.savefig('../figures/Scatterplot_Bias_PCR_DPL_OBS.png')
+fig.savefig('../figures/Scatterplot_BiasV_PCR_DPL_OBS.png')
+#plt.show()
+plt.close()
+
+fig, ax = plt.subplots(1,1, figsize=(4,4))
+ax.plot(rmse_PCR_OBS, rmse_DPL_OBS, 'xk')
+ax.axline((1, 1), slope=1, color="r", linestyle='--')
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.grid()
+ax.set_xlabel('PCR-GLOBWB 2.0', fontsize=12)
+ax.set_ylabel('DPL-HBV (Global Training)', fontsize=12)
+ax.set_title('RMSE (mm.day-1)', fontsize=12)
+plt.tight_layout()
+fig.savefig('../figures/Scatterplot_RMSE_PCR_DPL_OBS.png')
+#plt.show()
+plt.close()
+
+
+# 4x3 subplots
+month_label=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+custom_lines = [Line2D([0], [0], color='red', lw=1),
+                Line2D([0], [0], color='blue', linestyle='--', lw=1),
+                ]
+
+fig, axes = plt.subplots(4,3, figsize=(12,8))
+for i, ax in enumerate(axes.flatten()):
+    ax.plot(np.sort(rmse_by_month_PCR_OBS[i,:]), 'b')
+    ax.plot(np.sort(rmse_by_month_DPL_OBS[i,:]), 'r')
+    
+    ax.grid()
+    ax.set_ylabel('RMSE (mm.day-1)', fontsize=12)
+    ax.set_xlabel('Gages', fontsize=10)
+    ax.set_title(month_label[i], fontsize=12)
+plt.tight_layout()
+plt.figlegend(custom_lines, ['DPL-HBV', 'PCR-GLOBWB 2.0'],
+    loc = 'lower center', ncol=2, bbox_to_anchor=(0.5,-0.004), fontsize=12)
+plt.subplots_adjust(bottom=0.1)
+fig.savefig('../figures/CDF_RMSE_month_PCR_DPL_OBS.png')
+plt.show()
+
+fig, axes = plt.subplots(4,3, figsize=(12,8))
+for i, ax in enumerate(axes.flatten()):
+    ax.plot(np.sort(rmse_by_month_PCR_OBS[i,:]), 'b')
+    ax.plot(np.sort(rmse_by_month_DPL_OBS[i,:]), 'r')
+    ax.set_ylim(0,1.5)
+    ax.grid()
+    ax.set_ylabel('RMSE (mm.day-1)', fontsize=12)
+    ax.set_xlabel('Gages', fontsize=10)
+    ax.set_title(month_label[i], fontsize=12)
+plt.tight_layout()
+plt.figlegend(custom_lines, ['DPL-HBV', 'PCR-GLOBWB 2.0'],
+    loc = 'lower center', ncol=2, bbox_to_anchor=(0.5,-0.004), fontsize=12)
+plt.subplots_adjust(bottom=0.1)
+fig.savefig('../figures/CDF_RMSE_month_PCR_DPL_OBS_zoom.png')
+plt.show()
+
+
+fig, axes = plt.subplots(4,3, figsize=(12,8))
+for i, ax in enumerate(axes.flatten()):
+    ax.plot(np.sort(corr_by_month_PCR_OBS[i,:]), 'b')
+    ax.plot(np.sort(corr_by_month_DPL_OBS[i,:]), 'r')
+    ax.set_ylim(-1,1)
+    ax.grid()
+    ax.set_ylabel('Correlation', fontsize=12)
+    ax.set_xlabel('Gages', fontsize=10)
+    ax.set_title(month_label[i], fontsize=12)
+plt.tight_layout()
+plt.figlegend(custom_lines, ['DPL-HBV', 'PCR-GLOBWB 2.0'],
+    loc = 'lower center', ncol=2, bbox_to_anchor=(0.5,-0.004), fontsize=12)
+plt.subplots_adjust(bottom=0.1)
+fig.savefig('../figures/CDF_Corr_month_PCR_DPL_OBS.png')
 plt.show()
 
 
 
-#[n for n, (i,j) in enumerate(zip(nse_PCR_OBS, nse_DPL_OBS)) if j > i]
+
+fig, axes = plt.subplots(4,3, figsize=(12,8))
+for i, ax in enumerate(axes.flatten()):
+    ax.plot(rmse_by_month_PCR_OBS[i,:], rmse_by_month_DPL_OBS[i,:], 'xk')
+    
+    ax.grid()
+    ax.set_ylabel('PCR-GLOBWB 2.0', fontsize=12)
+    ax.set_xlabel('DPL-HBV', fontsize=10)
+    ax.set_title(month_label[i], fontsize=12)
+plt.suptitle('RMSE (mm.day-1)', fontsize=12)
+plt.tight_layout()
+fig.savefig('../figures/Scatterplot_RMSE_month_PCR_DPL_OBS.png')
+plt.show()
