@@ -17,6 +17,11 @@ PCR_annual = PCR.groupby(pd.Grouper(freq='YE-SEP')).sum()
 PCR_annual.drop(PCR_annual.index[-1], inplace=True)
 PCR_annual.drop(PCR_annual.index[0], inplace=True)
 
+# Large basins
+PCR_LB = pd.read_csv(
+    '../data/PCR_GLOBWB2/discharge_monthAvg_USGSgages_tillTX_1958-01-31_to_2015-12-31.csv',
+    index_col='Dates', parse_dates=True)
+
 
 def nash(predictions, targets):
     return 1-(np.sum((targets-predictions)**2)/np.sum((targets-np.mean(targets))**2))
@@ -27,6 +32,13 @@ nse = []
 rmse = []
 area = []
 corr = []
+
+gage_id_LB = []
+bias_LB = []
+nse_LB = []
+rmse_LB = []
+area_LB = []
+corr_LB = []
 
 # Loop over the gages
 for gage in PCR.columns:
@@ -108,16 +120,12 @@ for gage in PCR.columns:
     obs_annual.drop(obs_annual.index[-1], inplace=True)
     obs_annual.drop(obs_annual.index[0], inplace=True)
 
-
     # Only select gage if data are found
     if True in np.isnan(PCR[gage].values):
         continue
 
     # ID of the gage
     gage_id.append(gage)
-
-    # Area of the basin
-    area.append(attributes.loc[gage]['area'])
 
     # Bias, NSE, and RMSE
     bias.append(
@@ -131,11 +139,66 @@ for gage in PCR.columns:
     
     # Correlation between annual mean
     corr.append(np.corrcoef(PCR_annual[gage], obs_annual['streamflow'])[0,1])
+
+
+# Loop over the gages
+for gage in PCR_LB.columns:
+
+    # Only select gage if data are found
+    if True in np.isnan(PCR_LB[gage].values):
+        continue
+
     
+    # Read Observed Data
+    obs_LB = pd.read_csv('../data/USGS/USGS_{}.csv'.format(gage), 
+                      index_col='Dates', parse_dates=True, usecols=['Dates', 'Flow_cfs'])
+    obs_LB = obs_LB.truncate(before='1958-01-31', after='2015-12-31')
     
+    if obs_LB['Flow_cfs'].shape[0]==0:
+        continue
+    
+    obs_LB_monthAvg = obs_LB.resample('ME').mean()
+    
+    PCR_LB_plot = PCR_LB.truncate(before='{}-{}-{}'.format(
+        obs_LB_monthAvg.index[0].year, obs_LB_monthAvg.index[0].month, obs_LB_monthAvg.index[0].day),
+                             after='{}-{}-{}'.format(
+        obs_LB_monthAvg.index[-1].year, obs_LB_monthAvg.index[-1].month, obs_LB_monthAvg.index[-1].day))
+
+    # Annual total for the water year (starting in October)
+    PCR_LB_annual = PCR_LB_plot.groupby(pd.Grouper(freq='YE-SEP')).sum()
+    # Remove first and last year beceause they are incomplete water year 
+    PCR_LB_annual.drop(PCR_LB_annual.index[-1], inplace=True)
+    PCR_LB_annual.drop(PCR_LB_annual.index[0], inplace=True)
+
+    # Annual total for the water year (starting in October)
+    obs_LB_annual = obs_LB.groupby(pd.Grouper(freq='YE-SEP')).sum()
+    # Remove first and last year beceause they are incomplete water year 
+    obs_LB_annual.drop(obs_LB_annual.index[-1], inplace=True)
+    obs_LB_annual.drop(obs_LB_annual.index[0], inplace=True)
+
+    # ID of the gage
+    gage_id_LB.append(gage)
+
+    # Bias, NSE, and RMSE
+    bias_LB.append(
+        (np.mean(PCR_LB_plot[gage] - obs_LB_monthAvg['Flow_cfs'])) / 
+        np.mean(obs_LB_monthAvg['Flow_cfs']) * 100)
+
+    nse_LB.append(nash(PCR_LB_plot[gage], obs_LB_monthAvg['Flow_cfs']))
+
+    rmse_LB.append(
+        np.sqrt(np.mean((PCR_LB_plot[gage] - obs_LB_monthAvg['Flow_cfs'])**2)))
+    
+    # Correlation between annual mean
+    corr_LB.append(np.corrcoef(PCR_LB_annual[gage], obs_LB_annual['Flow_cfs'])[0,1])
+    
+   
+
+
 
 fig, ax = plt.subplots(1,1, figsize=(6,6))
-ax.plot(np.sort(nse), 'k')
+ax.plot(np.sort(nse), 'k', label='Caravan (<2,000 km$^2$)')
+ax.plot(np.sort(nse_LB), 'b', label='Basins (>2,000 km$^2$)')
 ax.set_ylim(-1,1)
 ax.grid()
 ax.set_xlabel('Gages',fontsize=12)
@@ -147,13 +210,14 @@ plt.show()
 
 
 fig, ax = plt.subplots(1,1, figsize=(6,6))
-ax.plot(np.sort(corr), 'k')
+ax.plot(np.sort(corr), 'k', label='Caravan (<2,000 km$^2$)')
+ax.plot(np.sort(corr_LB), 'b', label='Basins (>2,000 km$^2$)')
 ax.set_ylim(-0.5,1)
 ax.grid()
 ax.set_xlabel('Gages',fontsize=12)
 ax.set_ylabel('Correlation',fontsize=12)
 ax.set_title('PCR-GLOBWB2.0',fontsize=12)
 plt.tight_layout()
-fig.savefig('../figures/Correlation_PCRGLOBWB2.0.png')
+fig.savefig('../figures/Correlation_PCRGLOBWB2.0_w_LB.png')
 plt.show()
 
