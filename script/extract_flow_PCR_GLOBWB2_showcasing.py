@@ -116,7 +116,7 @@ for i, (gage_region, gage_id, gage_lat, gage_lon, gage_area, area_unit) in enume
             difference = abs(flow_cellAvg - gage.mean().values[0])
             id_closest_final = (id_closest[0]+dyy, id_closest[1]+dxx)
         
-    flow = file2read.variables['discharge'][:, id_closest_final[0]+dyy,id_closest_final[1]+dxx] * conversion_PCR
+    flow = file2read.variables['discharge'][:, id_closest_final[0],id_closest_final[1]] * conversion_PCR
     flow = pd.DataFrame(
         flow.data, index=pd.date_range(start='1958-01-31', end='2015-12-31', freq='ME'))
     flow = flow.truncate(before=start, after=end)

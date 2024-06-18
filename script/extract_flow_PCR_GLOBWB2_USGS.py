@@ -26,10 +26,10 @@ time = file2read.variables['time'][:]
 lon, lat = np.meshgrid(longitude, latitude)
 
 # List of basin from the USGS
-gages = np.loadtxt('../data/DPL-caravan_Maharjan_et_al_2024/GLOBAL_ALL_exclmissQ_area100to2k.txt',
-                    dtype=str)
+
 gages = pd.read_csv('../data/USGS/MetaData_USGS.csv', 
-                    dtype={'iD':str, 'area_km2':float, 'lat':float, 'lon':float}, index_col='iD')
+    dtype={'iD':str, 'area_km2':float, 'lat':float, 'lon':float, 'num_of_years':float}, 
+    index_col='iD')
 
 
 discharge = pd.DataFrame()
@@ -55,6 +55,6 @@ for i, gage in enumerate(gages.index):
 dates = pd.date_range(start='1958-01-31', end='2015-12-31', freq='ME')
 discharge.index = dates
 discharge.index.name = 'Dates'
-discharge.to_csv('../data/PCR_GLOBWB2/discharge_monthAvg_USGSgages_tillTX_1958-01-31_to_2015-12-31.csv')
+discharge.to_csv('../data/PCR_GLOBWB2/discharge_monthAvg_USGSgages_1958-01-31_to_2015-12-31.csv')
 
 

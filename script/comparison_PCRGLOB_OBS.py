@@ -19,7 +19,7 @@ PCR_annual.drop(PCR_annual.index[0], inplace=True)
 
 # Large basins
 PCR_LB = pd.read_csv(
-    '../data/PCR_GLOBWB2/discharge_monthAvg_USGSgages_tillTX_1958-01-31_to_2015-12-31.csv',
+    '../data/PCR_GLOBWB2/discharge_monthAvg_USGSgages_1958-01-31_to_2015-12-31.csv',
     index_col='Dates', parse_dates=True)
 
 
@@ -205,7 +205,7 @@ ax.set_xlabel('Gages',fontsize=12)
 ax.set_ylabel('NSE',fontsize=12)
 ax.set_title('PCR-GLOBWB2.0',fontsize=12)
 plt.tight_layout()
-fig.savefig('../figures/NSE_PCRGLOBWB2.0.png')
+fig.savefig('../figures/NSE_PCRGLOBWB2.0_w_LB.png')
 plt.show()
 
 
@@ -221,3 +221,22 @@ plt.tight_layout()
 fig.savefig('../figures/Correlation_PCRGLOBWB2.0_w_LB.png')
 plt.show()
 
+for id_plotted in gage_id_LB:
+    iid = id_plotted.find('_')
+    obs_LB = pd.read_csv('../data/USGS/USGS_{}.csv'.format(gage), 
+                      index_col='Dates', parse_dates=True, usecols=['Dates', 'Flow_cfs'])
+    obs_LB = obs_LB.truncate(before='1958-01-31', after='2015-12-31')
+    obs_monthAvg = obs.resample('ME').mean()
+
+    fig, ax = plt.subplots(1,1, figsize=(12,6))
+    ax.plot(obs_monthAvg.index, obs_monthAvg['streamflow'], 'k', label='USGS')
+    ax.plot(PCR_LB.index, PCR_LB[id_plotted], 'b', label='PCR-GLOBWB 2.0')
+
+    ax.grid()
+    ax.set_ylabel('Streamflow (mm.day-1)', fontsize=12)
+    ax.set_title(id_plotted, fontsize=12)
+    ax.legend()
+    plt.tight_layout()
+    fig.savefig('../figures/timeseries_LB/TimeSeries_USGS{}.png'.format(id_plotted))
+    #plt.show()
+    plt.close()
